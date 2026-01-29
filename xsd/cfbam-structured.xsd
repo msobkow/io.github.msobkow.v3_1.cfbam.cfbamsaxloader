@@ -2619,13 +2619,6 @@
 	</xsd:restriction>
 </xsd:simpleType>
 
-<xsd:simpleType name="SecDevicePubKeyType">
-	<xsd:restriction base="xsd:string">
-		<xsd:maxLength value="10000"/>
-		<xsd:whiteSpace value="preserve"/>
-	</xsd:restriction>
-</xsd:simpleType>
-
 <xsd:simpleType name="SecDeviceRevisionType">
 	<xsd:restriction base="xsd:integer"/>
 </xsd:simpleType>
@@ -5774,7 +5767,6 @@
 		<xsd:choice minOccurs="0" maxOccurs="unbounded">
 		</xsd:choice>
 	</xsd:sequence>
-	<xsd:attribute name="PubKey" type="SecDevicePubKeyType" use="optional"/>
 </xsd:complexType>
 
 <xsd:complexType name="SecGroupObjType" mixed="true">
