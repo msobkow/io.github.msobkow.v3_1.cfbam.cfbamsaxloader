@@ -6218,7 +6218,6 @@
 		<xsd:choice minOccurs="0" maxOccurs="unbounded">
 		</xsd:choice>
 	</xsd:sequence>
-	<xsd:attribute name="ClusterId" type="SecClusRoleClusterIdType" use="required"/>
 	<xsd:attribute name="Name" type="SecClusRoleNameType" use="required"/>
 </xsd:complexType>
 
@@ -6227,6 +6226,7 @@
 		<xsd:choice minOccurs="0" maxOccurs="unbounded">
 		</xsd:choice>
 	</xsd:sequence>
+	<xsd:attribute name="User" type="xsd:string" use="required"/>
 </xsd:complexType>
 
 <xsd:complexType name="SecRoleObjType" mixed="true">
@@ -7773,7 +7773,6 @@
 			<xsd:element name="MimeType" type="MimeTypeObjType" />
 			<xsd:element name="SecClusGrp" type="SecClusGrpObjType" />
 			<xsd:element name="SecClusRole" type="SecClusRoleObjType" />
-			<xsd:element name="SecClusRoleMemb" type="SecClusRoleMembObjType" />
 			<xsd:element name="SecRole" type="SecRoleObjType" />
 			<xsd:element name="SecSession" type="SecSessionObjType" />
 			<xsd:element name="SecSysGrp" type="SecSysGrpObjType" />
