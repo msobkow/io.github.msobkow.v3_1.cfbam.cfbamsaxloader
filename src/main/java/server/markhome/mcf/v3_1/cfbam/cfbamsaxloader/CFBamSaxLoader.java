@@ -228,19 +228,17 @@ public class CFBamSaxLoader
 	private LoaderBehaviourEnum schemaTweakLoaderBehaviour = LoaderBehaviourEnum.Update;
 	private LoaderBehaviourEnum scopeLoaderBehaviour = LoaderBehaviourEnum.Update;
 	private LoaderBehaviourEnum secClusGrpLoaderBehaviour = LoaderBehaviourEnum.Insert;
-	private LoaderBehaviourEnum secClusGrpIncLoaderBehaviour = LoaderBehaviourEnum.Insert;
 	private LoaderBehaviourEnum secClusGrpMembLoaderBehaviour = LoaderBehaviourEnum.Insert;
 	private LoaderBehaviourEnum secClusRoleLoaderBehaviour = LoaderBehaviourEnum.Insert;
 	private LoaderBehaviourEnum secClusRoleMembLoaderBehaviour = LoaderBehaviourEnum.Insert;
-	private LoaderBehaviourEnum secRoleLoaderBehaviour = LoaderBehaviourEnum.Insert;
-	private LoaderBehaviourEnum secRoleEnablesLoaderBehaviour = LoaderBehaviourEnum.Insert;
-	private LoaderBehaviourEnum secRoleMembLoaderBehaviour = LoaderBehaviourEnum.Insert;
 	private LoaderBehaviourEnum secSessionLoaderBehaviour = LoaderBehaviourEnum.Insert;
 	private LoaderBehaviourEnum secSysGrpLoaderBehaviour = LoaderBehaviourEnum.Insert;
 	private LoaderBehaviourEnum secSysGrpIncLoaderBehaviour = LoaderBehaviourEnum.Insert;
 	private LoaderBehaviourEnum secSysGrpMembLoaderBehaviour = LoaderBehaviourEnum.Insert;
+	private LoaderBehaviourEnum secSysRoleLoaderBehaviour = LoaderBehaviourEnum.Insert;
+	private LoaderBehaviourEnum secSysRoleEnablesLoaderBehaviour = LoaderBehaviourEnum.Insert;
+	private LoaderBehaviourEnum secSysRoleMembLoaderBehaviour = LoaderBehaviourEnum.Insert;
 	private LoaderBehaviourEnum secTentGrpLoaderBehaviour = LoaderBehaviourEnum.Insert;
-	private LoaderBehaviourEnum secTentGrpIncLoaderBehaviour = LoaderBehaviourEnum.Insert;
 	private LoaderBehaviourEnum secTentGrpMembLoaderBehaviour = LoaderBehaviourEnum.Insert;
 	private LoaderBehaviourEnum secTentRoleLoaderBehaviour = LoaderBehaviourEnum.Insert;
 	private LoaderBehaviourEnum secTentRoleMembLoaderBehaviour = LoaderBehaviourEnum.Insert;
@@ -428,19 +426,17 @@ public class CFBamSaxLoader
 	private CFBamSaxLoaderSchemaTweak schemaTweakHandler = null;
 	private CFBamSaxLoaderScope scopeHandler = null;
 	private CFBamSaxLoaderSecClusGrp secClusGrpHandler = null;
-	private CFBamSaxLoaderSecClusGrpInc secClusGrpIncHandler = null;
 	private CFBamSaxLoaderSecClusGrpMemb secClusGrpMembHandler = null;
 	private CFBamSaxLoaderSecClusRole secClusRoleHandler = null;
 	private CFBamSaxLoaderSecClusRoleMemb secClusRoleMembHandler = null;
-	private CFBamSaxLoaderSecRole secRoleHandler = null;
-	private CFBamSaxLoaderSecRoleEnables secRoleEnablesHandler = null;
-	private CFBamSaxLoaderSecRoleMemb secRoleMembHandler = null;
 	private CFBamSaxLoaderSecSession secSessionHandler = null;
 	private CFBamSaxLoaderSecSysGrp secSysGrpHandler = null;
 	private CFBamSaxLoaderSecSysGrpInc secSysGrpIncHandler = null;
 	private CFBamSaxLoaderSecSysGrpMemb secSysGrpMembHandler = null;
+	private CFBamSaxLoaderSecSysRole secSysRoleHandler = null;
+	private CFBamSaxLoaderSecSysRoleEnables secSysRoleEnablesHandler = null;
+	private CFBamSaxLoaderSecSysRoleMemb secSysRoleMembHandler = null;
 	private CFBamSaxLoaderSecTentGrp secTentGrpHandler = null;
-	private CFBamSaxLoaderSecTentGrpInc secTentGrpIncHandler = null;
 	private CFBamSaxLoaderSecTentGrpMemb secTentGrpMembHandler = null;
 	private CFBamSaxLoaderSecTentRole secTentRoleHandler = null;
 	private CFBamSaxLoaderSecTentRoleMemb secTentRoleMembHandler = null;
@@ -1215,12 +1211,6 @@ public class CFBamSaxLoader
 		}
 		return( secClusGrpHandler );
 	}
-	protected CFBamSaxLoaderSecClusGrpInc getSecClusGrpIncHandler() {
-		if( secClusGrpIncHandler == null ) {
-			secClusGrpIncHandler = new CFBamSaxLoaderSecClusGrpInc( this );
-		}
-		return( secClusGrpIncHandler );
-	}
 	protected CFBamSaxLoaderSecClusGrpMemb getSecClusGrpMembHandler() {
 		if( secClusGrpMembHandler == null ) {
 			secClusGrpMembHandler = new CFBamSaxLoaderSecClusGrpMemb( this );
@@ -1238,24 +1228,6 @@ public class CFBamSaxLoader
 			secClusRoleMembHandler = new CFBamSaxLoaderSecClusRoleMemb( this );
 		}
 		return( secClusRoleMembHandler );
-	}
-	protected CFBamSaxLoaderSecRole getSecRoleHandler() {
-		if( secRoleHandler == null ) {
-			secRoleHandler = new CFBamSaxLoaderSecRole( this );
-		}
-		return( secRoleHandler );
-	}
-	protected CFBamSaxLoaderSecRoleEnables getSecRoleEnablesHandler() {
-		if( secRoleEnablesHandler == null ) {
-			secRoleEnablesHandler = new CFBamSaxLoaderSecRoleEnables( this );
-		}
-		return( secRoleEnablesHandler );
-	}
-	protected CFBamSaxLoaderSecRoleMemb getSecRoleMembHandler() {
-		if( secRoleMembHandler == null ) {
-			secRoleMembHandler = new CFBamSaxLoaderSecRoleMemb( this );
-		}
-		return( secRoleMembHandler );
 	}
 	protected CFBamSaxLoaderSecSession getSecSessionHandler() {
 		if( secSessionHandler == null ) {
@@ -1281,17 +1253,29 @@ public class CFBamSaxLoader
 		}
 		return( secSysGrpMembHandler );
 	}
+	protected CFBamSaxLoaderSecSysRole getSecSysRoleHandler() {
+		if( secSysRoleHandler == null ) {
+			secSysRoleHandler = new CFBamSaxLoaderSecSysRole( this );
+		}
+		return( secSysRoleHandler );
+	}
+	protected CFBamSaxLoaderSecSysRoleEnables getSecSysRoleEnablesHandler() {
+		if( secSysRoleEnablesHandler == null ) {
+			secSysRoleEnablesHandler = new CFBamSaxLoaderSecSysRoleEnables( this );
+		}
+		return( secSysRoleEnablesHandler );
+	}
+	protected CFBamSaxLoaderSecSysRoleMemb getSecSysRoleMembHandler() {
+		if( secSysRoleMembHandler == null ) {
+			secSysRoleMembHandler = new CFBamSaxLoaderSecSysRoleMemb( this );
+		}
+		return( secSysRoleMembHandler );
+	}
 	protected CFBamSaxLoaderSecTentGrp getSecTentGrpHandler() {
 		if( secTentGrpHandler == null ) {
 			secTentGrpHandler = new CFBamSaxLoaderSecTentGrp( this );
 		}
 		return( secTentGrpHandler );
-	}
-	protected CFBamSaxLoaderSecTentGrpInc getSecTentGrpIncHandler() {
-		if( secTentGrpIncHandler == null ) {
-			secTentGrpIncHandler = new CFBamSaxLoaderSecTentGrpInc( this );
-		}
-		return( secTentGrpIncHandler );
 	}
 	protected CFBamSaxLoaderSecTentGrpMemb getSecTentGrpMembHandler() {
 		if( secTentGrpMembHandler == null ) {
@@ -1791,10 +1775,9 @@ public class CFBamSaxLoader
 			saxDocHandler.addElementHandler( "ISOTZone", getISOTZoneHandler() );
 			saxDocHandler.addElementHandler( "MimeType", getMimeTypeHandler() );
 			saxDocHandler.addElementHandler( "SecClusGrp", getSecClusGrpHandler() );
-			saxDocHandler.addElementHandler( "SecClusRole", getSecClusRoleHandler() );
-			saxDocHandler.addElementHandler( "SecRole", getSecRoleHandler() );
 			saxDocHandler.addElementHandler( "SecSession", getSecSessionHandler() );
 			saxDocHandler.addElementHandler( "SecSysGrp", getSecSysGrpHandler() );
+			saxDocHandler.addElementHandler( "SecSysRole", getSecSysRoleHandler() );
 			saxDocHandler.addElementHandler( "SecTentGrp", getSecTentGrpHandler() );
 			saxDocHandler.addElementHandler( "SecUser", getSecUserHandler() );
 			saxDocHandler.addElementHandler( "SecUserPWHistory", getSecUserPWHistoryHandler() );
@@ -2667,14 +2650,6 @@ public class CFBamSaxLoader
 		secClusGrpLoaderBehaviour = value;
 	}
 
-	public LoaderBehaviourEnum getSecClusGrpIncLoaderBehaviour() {
-		return( secClusGrpIncLoaderBehaviour );
-	}
-
-	public void setSecClusGrpIncLoaderBehaviour( LoaderBehaviourEnum value ) {
-		secClusGrpIncLoaderBehaviour = value;
-	}
-
 	public LoaderBehaviourEnum getSecClusGrpMembLoaderBehaviour() {
 		return( secClusGrpMembLoaderBehaviour );
 	}
@@ -2697,30 +2672,6 @@ public class CFBamSaxLoader
 
 	public void setSecClusRoleMembLoaderBehaviour( LoaderBehaviourEnum value ) {
 		secClusRoleMembLoaderBehaviour = value;
-	}
-
-	public LoaderBehaviourEnum getSecRoleLoaderBehaviour() {
-		return( secRoleLoaderBehaviour );
-	}
-
-	public void setSecRoleLoaderBehaviour( LoaderBehaviourEnum value ) {
-		secRoleLoaderBehaviour = value;
-	}
-
-	public LoaderBehaviourEnum getSecRoleEnablesLoaderBehaviour() {
-		return( secRoleEnablesLoaderBehaviour );
-	}
-
-	public void setSecRoleEnablesLoaderBehaviour( LoaderBehaviourEnum value ) {
-		secRoleEnablesLoaderBehaviour = value;
-	}
-
-	public LoaderBehaviourEnum getSecRoleMembLoaderBehaviour() {
-		return( secRoleMembLoaderBehaviour );
-	}
-
-	public void setSecRoleMembLoaderBehaviour( LoaderBehaviourEnum value ) {
-		secRoleMembLoaderBehaviour = value;
 	}
 
 	public LoaderBehaviourEnum getSecSessionLoaderBehaviour() {
@@ -2755,20 +2706,36 @@ public class CFBamSaxLoader
 		secSysGrpMembLoaderBehaviour = value;
 	}
 
+	public LoaderBehaviourEnum getSecSysRoleLoaderBehaviour() {
+		return( secSysRoleLoaderBehaviour );
+	}
+
+	public void setSecSysRoleLoaderBehaviour( LoaderBehaviourEnum value ) {
+		secSysRoleLoaderBehaviour = value;
+	}
+
+	public LoaderBehaviourEnum getSecSysRoleEnablesLoaderBehaviour() {
+		return( secSysRoleEnablesLoaderBehaviour );
+	}
+
+	public void setSecSysRoleEnablesLoaderBehaviour( LoaderBehaviourEnum value ) {
+		secSysRoleEnablesLoaderBehaviour = value;
+	}
+
+	public LoaderBehaviourEnum getSecSysRoleMembLoaderBehaviour() {
+		return( secSysRoleMembLoaderBehaviour );
+	}
+
+	public void setSecSysRoleMembLoaderBehaviour( LoaderBehaviourEnum value ) {
+		secSysRoleMembLoaderBehaviour = value;
+	}
+
 	public LoaderBehaviourEnum getSecTentGrpLoaderBehaviour() {
 		return( secTentGrpLoaderBehaviour );
 	}
 
 	public void setSecTentGrpLoaderBehaviour( LoaderBehaviourEnum value ) {
 		secTentGrpLoaderBehaviour = value;
-	}
-
-	public LoaderBehaviourEnum getSecTentGrpIncLoaderBehaviour() {
-		return( secTentGrpIncLoaderBehaviour );
-	}
-
-	public void setSecTentGrpIncLoaderBehaviour( LoaderBehaviourEnum value ) {
-		secTentGrpIncLoaderBehaviour = value;
 	}
 
 	public LoaderBehaviourEnum getSecTentGrpMembLoaderBehaviour() {

@@ -89,8 +89,8 @@ public class CFBamSaxLoaderSecTentRole
 		String attrId = null;
 		// SecTentRole Attributes
 		// SecTentRole References
-		ICFBamSecSysGrpObj refRole = null;
 		ICFBamTenantObj refTenant = null;
+		ICFBamSecSysGrpObj refSysRole = null;
 		// Attribute Extraction
 		String attrLocalName;
 		int numAttrs;
@@ -179,8 +179,8 @@ public class CFBamSaxLoaderSecTentRole
 					"scopeObj" );
 			}
 			else if( scopeObj instanceof ICFBamSecSysGrpObj ) {
-				refRole = (ICFBamSecSysGrpObj) scopeObj;
-				editBuff.setRequiredContainerRole( refRole );
+				refSysRole = (ICFBamSecSysGrpObj) scopeObj;
+				editBuff.setRequiredContainerSysRole( refSysRole );
 				refTenant = (ICFBamTenantObj)editBuff.getRequiredOwnerTenant();
 			}
 			else {
@@ -209,7 +209,7 @@ public class CFBamSaxLoaderSecTentRole
 			CFBamSaxLoader.LoaderBehaviourEnum loaderBehaviour = saxLoader.getSecTentRoleLoaderBehaviour();
 			ICFBamSecTentRoleEditObj editSecTentRole = null;
 			ICFBamSecTentRoleObj origSecTentRole = (ICFBamSecTentRoleObj)schemaObj.getSecTentRoleTableObj().readSecTentRoleByUNameIdx( refTenant.getRequiredId(),
-			refRole.getRequiredName() );
+			refSysRole.getRequiredName() );
 			if( origSecTentRole == null ) {
 				editSecTentRole = editBuff;
 			}

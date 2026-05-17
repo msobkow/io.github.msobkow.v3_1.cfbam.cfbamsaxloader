@@ -90,7 +90,7 @@ public class CFBamSaxLoaderSecSysGrp
 		// SecSysGrp Attributes
 		String attrName = null;
 		String attrSecLevel = null;
-		String attrImplRole = null;
+		String attrImplSysRole = null;
 		// SecSysGrp References
 		// Attribute Extraction
 		String attrLocalName;
@@ -151,14 +151,14 @@ public class CFBamSaxLoaderSecSysGrp
 					}
 					attrSecLevel = attrs.getValue( idxAttr );
 				}
-				else if( attrLocalName.equals( "ImplRole" ) ) {
-					if( attrImplRole != null ) {
+				else if( attrLocalName.equals( "ImplSysRole" ) ) {
+					if( attrImplSysRole != null ) {
 						throw new CFLibUniqueIndexViolationException( getClass(),
 							S_ProcName,
 							S_LocalName,
 							attrLocalName );
 					}
-					attrImplRole = attrs.getValue( idxAttr );
+					attrImplSysRole = attrs.getValue( idxAttr );
 				}
 				else if( attrLocalName.equals( "schemaLocation" ) ) {
 					// ignored
@@ -190,7 +190,7 @@ public class CFBamSaxLoaderSecSysGrp
 			curContext.putNamedValue( "Id", attrId );
 			curContext.putNamedValue( "Name", attrName );
 			curContext.putNamedValue( "SecLevel", attrSecLevel );
-			curContext.putNamedValue( "ImplRole", attrImplRole );
+			curContext.putNamedValue( "ImplSysRole", attrImplSysRole );
 
 			// Convert string attributes to native Java types
 			// and apply the converted attributes to the editBuff.
