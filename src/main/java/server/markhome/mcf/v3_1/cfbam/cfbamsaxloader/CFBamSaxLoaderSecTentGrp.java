@@ -187,20 +187,24 @@ public class CFBamSaxLoaderSecTentGrp
 				scopeObj = null;
 			}
 
-			refTenant = null;
-			// Resolve and apply Owner reference
+			// Resolve and apply required Container reference
 
-			if( refTenant == null ) {
-				if( scopeObj instanceof ICFBamTenantObj ) {
-					refTenant = (ICFBamTenantObj) scopeObj;
-					editBuff.setRequiredOwnerTenant( refTenant );
-				}
-				else {
-					throw new CFLibNullArgumentException( getClass(),
-						S_ProcName,
-						0,
-						"Owner<Tenant>" );
-				}
+			if( scopeObj == null ) {
+				throw new CFLibNullArgumentException( getClass(),
+					S_ProcName,
+					0,
+					"scopeObj" );
+			}
+			else if( scopeObj instanceof ICFBamTenantObj ) {
+				refTenant = (ICFBamTenantObj) scopeObj;
+				editBuff.setRequiredContainerTenant( refTenant );
+			}
+			else {
+				throw new CFLibUnsupportedClassException( getClass(),
+					S_ProcName,
+					"scopeObj",
+					scopeObj,
+					"ICFBamTenantObj" );
 			}
 
 			// Lookup refSysGrp by key name value attr

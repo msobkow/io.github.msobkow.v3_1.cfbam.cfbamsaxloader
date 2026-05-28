@@ -36,9 +36,9 @@
 		<xsd:enumeration value="Global"/>
 		<xsd:enumeration value="Cluster"/>
 		<xsd:enumeration value="Tenant"/>
-		<xsd:enumeration value="SystemRole"/>
-		<xsd:enumeration value="ClusterRole"/>
-		<xsd:enumeration value="TenantRole"/>
+		<xsd:enumeration value="SysRole"/>
+		<xsd:enumeration value="ClusRole"/>
+		<xsd:enumeration value="TentRole"/>
 	</xsd:restriction>
 </xsd:simpleType>
 
@@ -295,6 +295,17 @@
 		<xsd:enumeration value="SystemGroup"/>
 		<xsd:enumeration value="ClusterGroup"/>
 		<xsd:enumeration value="TenantGroup"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="RoleScopeEnumType">
+	<xsd:restriction base="xsd:token">
+		<xsd:minLength value="1"/>
+		<xsd:maxLength value="127"/>
+		<xsd:whiteSpace value="collapse"/>
+		<xsd:enumeration value="SysRole"/>
+		<xsd:enumeration value="ClusRole"/>
+		<xsd:enumeration value="TentRole"/>
 	</xsd:restriction>
 </xsd:simpleType>
 
@@ -2658,6 +2669,11 @@
 
 <xsd:simpleType name="SchemaRoleSchemaDefIdType">
 	<xsd:restriction base="ScopeIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SchemaRoleRoleScopeType">
+	<xsd:restriction base="RoleScopeEnumType">
 	</xsd:restriction>
 </xsd:simpleType>
 
@@ -5496,6 +5512,7 @@
 	<xsd:sequence>
 		<xsd:choice minOccurs="0" maxOccurs="unbounded">
 			<xsd:element name="Tenant" type="TenantObjType" />
+			<xsd:element name="SecClusRole" type="SecClusRoleObjType" />
 			<xsd:element name="SysCluster" type="SysClusterObjType" />
 		</xsd:choice>
 	</xsd:sequence>
@@ -5674,6 +5691,7 @@
 				<xsd:choice minOccurs="0" maxOccurs="unbounded">
 				</xsd:choice>
 			</xsd:sequence>
+			<xsd:attribute name="RoleScope" type="SchemaRoleRoleScopeType" use="required"/>
 		</xsd:extension>
 	</xsd:complexContent>
 </xsd:complexType>
@@ -6166,6 +6184,7 @@
 		<xsd:choice minOccurs="0" maxOccurs="unbounded">
 		</xsd:choice>
 	</xsd:sequence>
+	<xsd:attribute name="SysRole" type="xsd:string" use="required"/>
 </xsd:complexType>
 
 <xsd:complexType name="SecClusRoleMembObjType" mixed="true">
@@ -6257,6 +6276,7 @@
 		<xsd:choice minOccurs="0" maxOccurs="unbounded">
 		</xsd:choice>
 	</xsd:sequence>
+	<xsd:attribute name="SysRole" type="xsd:string" use="required"/>
 </xsd:complexType>
 
 <xsd:complexType name="SecTentRoleMembObjType" mixed="true">
@@ -6342,6 +6362,8 @@
 <xsd:complexType name="TenantObjType" mixed="true">
 	<xsd:sequence>
 		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="SecTentGrp" type="SecTentGrpObjType" />
+			<xsd:element name="SecTentRole" type="SecTentRoleObjType" />
 			<xsd:element name="Tld" type="TldObjType" />
 		</xsd:choice>
 	</xsd:sequence>
@@ -7714,7 +7736,6 @@
 			<xsd:element name="SecSession" type="SecSessionObjType" />
 			<xsd:element name="SecSysGrp" type="SecSysGrpObjType" />
 			<xsd:element name="SecSysRole" type="SecSysRoleObjType" />
-			<xsd:element name="SecTentGrp" type="SecTentGrpObjType" />
 			<xsd:element name="SecUser" type="SecUserObjType" />
 			<xsd:element name="SecUserPWHistory" type="SecUserPWHistoryObjType" />
 			<xsd:element name="URLProtocol" type="URLProtocolObjType" />
