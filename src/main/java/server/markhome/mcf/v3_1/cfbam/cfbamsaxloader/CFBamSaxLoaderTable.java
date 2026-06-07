@@ -106,6 +106,7 @@ public class CFBamSaxLoaderTable
 		String attrIsServerOnly = null;
 		String attrLoaderBehaviour = null;
 		String attrSecScope = null;
+		String attrCodeVis = null;
 		String attrDefSchema = null;
 		String attrLookupIndex = null;
 		String attrAltIndex = null;
@@ -294,6 +295,15 @@ public class CFBamSaxLoaderTable
 					}
 					attrSecScope = attrs.getValue( idxAttr );
 				}
+				else if( attrLocalName.equals( "CodeVis" ) ) {
+					if( attrCodeVis != null ) {
+						throw new CFLibUniqueIndexViolationException( getClass(),
+							S_ProcName,
+							S_LocalName,
+							attrLocalName );
+					}
+					attrCodeVis = attrs.getValue( idxAttr );
+				}
 				else if( attrLocalName.equals( "DefSchema" ) ) {
 					if( attrDefSchema != null ) {
 						throw new CFLibUniqueIndexViolationException( getClass(),
@@ -411,6 +421,12 @@ public class CFBamSaxLoaderTable
 					0,
 					"SecScope" );
 			}
+			if( ( attrCodeVis == null ) || ( attrCodeVis.length() <= 0 ) ) {
+				throw new CFLibNullArgumentException( getClass(),
+					S_ProcName,
+					0,
+					"CodeVis" );
+			}
 
 			// Save named attributes to context
 			CFLibXmlCoreContext curContext = getParser().getCurContext();
@@ -430,6 +446,7 @@ public class CFBamSaxLoaderTable
 			curContext.putNamedValue( "IsServerOnly", attrIsServerOnly );
 			curContext.putNamedValue( "LoaderBehaviour", attrLoaderBehaviour );
 			curContext.putNamedValue( "SecScope", attrSecScope );
+			curContext.putNamedValue( "CodeVis", attrCodeVis );
 			curContext.putNamedValue( "DefSchema", attrDefSchema );
 			curContext.putNamedValue( "LookupIndex", attrLookupIndex );
 			curContext.putNamedValue( "AltIndex", attrAltIndex );
@@ -563,6 +580,9 @@ public class CFBamSaxLoaderTable
 			ICFBamSchema.SecScopeEnum natSecScope = ICFBamSchema.parseSecScopeEnum( attrSecScope );
 			editBuff.setRequiredSecScope( natSecScope );
 
+			ICFBamSchema.CodeVisibilityEnum natCodeVis = ICFBamSchema.parseCodeVisibilityEnum( attrCodeVis );
+			editBuff.setRequiredCodeVis( natCodeVis );
+
 			// Get the scope/container object
 
 			CFLibXmlCoreContext parentContext = curContext.getPrevContext();
@@ -670,6 +690,7 @@ public class CFBamSaxLoaderTable
 						editTable.setRequiredIsServerOnly( editBuff.getRequiredIsServerOnly() );
 						editTable.setRequiredLoaderBehaviour( editBuff.getRequiredLoaderBehaviour() );
 						editTable.setRequiredSecScope( editBuff.getRequiredSecScope() );
+						editTable.setRequiredCodeVis( editBuff.getRequiredCodeVis() );
 						editTable.setOptionalLookupDefSchema( editBuff.getOptionalLookupDefSchema() );
 						editTable.setOptionalLookupLookupIndex( editBuff.getOptionalLookupLookupIndex() );
 						editTable.setOptionalLookupAltIndex( editBuff.getOptionalLookupAltIndex() );
