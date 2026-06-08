@@ -267,6 +267,7 @@ public class CFBamSaxLoader
 	private LoaderBehaviourEnum tZTimestampTypeLoaderBehaviour = LoaderBehaviourEnum.Update;
 	private LoaderBehaviourEnum tableLoaderBehaviour = LoaderBehaviourEnum.Update;
 	private LoaderBehaviourEnum tableColLoaderBehaviour = LoaderBehaviourEnum.Update;
+	private LoaderBehaviourEnum tableInfoLoaderBehaviour = LoaderBehaviourEnum.Update;
 	private LoaderBehaviourEnum tableTweakLoaderBehaviour = LoaderBehaviourEnum.Update;
 	private LoaderBehaviourEnum tenantLoaderBehaviour = LoaderBehaviourEnum.Insert;
 	private LoaderBehaviourEnum textColLoaderBehaviour = LoaderBehaviourEnum.Update;
@@ -465,6 +466,7 @@ public class CFBamSaxLoader
 	private CFBamSaxLoaderTZTimestampType tZTimestampTypeHandler = null;
 	private CFBamSaxLoaderTable tableHandler = null;
 	private CFBamSaxLoaderTableCol tableColHandler = null;
+	private CFBamSaxLoaderTableInfo tableInfoHandler = null;
 	private CFBamSaxLoaderTableTweak tableTweakHandler = null;
 	private CFBamSaxLoaderTenant tenantHandler = null;
 	private CFBamSaxLoaderTextCol textColHandler = null;
@@ -1499,6 +1501,12 @@ public class CFBamSaxLoader
 		}
 		return( tableColHandler );
 	}
+	protected CFBamSaxLoaderTableInfo getTableInfoHandler() {
+		if( tableInfoHandler == null ) {
+			tableInfoHandler = new CFBamSaxLoaderTableInfo( this );
+		}
+		return( tableInfoHandler );
+	}
 	protected CFBamSaxLoaderTableTweak getTableTweakHandler() {
 		if( tableTweakHandler == null ) {
 			tableTweakHandler = new CFBamSaxLoaderTableTweak( this );
@@ -1784,6 +1792,7 @@ public class CFBamSaxLoader
 			saxDocHandler.addElementHandler( "SecSysRole", getSecSysRoleHandler() );
 			saxDocHandler.addElementHandler( "SecUser", getSecUserHandler() );
 			saxDocHandler.addElementHandler( "SecUserPWHistory", getSecUserPWHistoryHandler() );
+			saxDocHandler.addElementHandler( "TableInfo", getTableInfoHandler() );
 			saxDocHandler.addElementHandler( "URLProtocol", getURLProtocolHandler() );
 		}
 		return( saxDocHandler );
@@ -2963,6 +2972,14 @@ public class CFBamSaxLoader
 
 	public void setTableColLoaderBehaviour( LoaderBehaviourEnum value ) {
 		tableColLoaderBehaviour = value;
+	}
+
+	public LoaderBehaviourEnum getTableInfoLoaderBehaviour() {
+		return( tableInfoLoaderBehaviour );
+	}
+
+	public void setTableInfoLoaderBehaviour( LoaderBehaviourEnum value ) {
+		tableInfoLoaderBehaviour = value;
 	}
 
 	public LoaderBehaviourEnum getTableTweakLoaderBehaviour() {
